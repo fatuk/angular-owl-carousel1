@@ -63,9 +63,11 @@
 			transclude: true,
 			link: function (scope, element, attributes, controller, $transclude) {
 
+				scope.owlCarousel = {};
+
 				var options = {},
+					id = attributes.id || 1,
 					$element = $(element),
-					owlCarousel = null,
 					propertyName = attributes.owlCarousel;
 
 				for (var i = 0; i < owlOptions.length; i++) {
@@ -76,8 +78,8 @@
 				}
 
 				scope.$watchCollection(propertyName, function (newItems, oldItems) {
-					if (owlCarousel) {
-						owlCarousel.destroy();
+					if (scope.owlCarousel[id]) {
+						scope.owlCarousel[id].destroy();
 					}
 					$element.empty();
 
@@ -90,7 +92,7 @@
 
 
 					$element.owlCarousel(options);
-					owlCarousel = $element.data('owlCarousel');
+					scope.owlCarousel[id] = $element.data('owlCarousel');
 				});
 			}
 		};
