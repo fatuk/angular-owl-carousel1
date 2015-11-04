@@ -30,6 +30,7 @@ HTML:
 			id="myCarousel"
 			items="1"
 			pagination="true"
+			transition-style="'fade'"
 			owl-carousel="items">
 			<div class="item">{{ item }}</div>
 		</div>
