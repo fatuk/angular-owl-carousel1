@@ -90,9 +90,14 @@
 						});
 					}
 
-
 					$element.owlCarousel(options);
 					scope.owlCarousel[id] = $element.data('owlCarousel');
+
+					// Jump to a current item
+					if (attributes.currentItem) {
+						var currentItem = parseInt(attributes.currentItem, 10);
+						scope.owlCarousel[id].jumpTo(currentItem);
+					}
 				});
 			}
 		};
