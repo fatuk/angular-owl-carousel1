@@ -67,8 +67,8 @@
 
 				var options = {},
 					id = attributes.id || 1,
-					$element = $(element),
-					propertyName = attributes.owlCarousel;
+					$element = $(element);
+				scope.carouselData = attributes.owlCarousel;
 
 				for (var i = 0; i < owlOptions.length; i++) {
 					var opt = owlOptions[i];
@@ -77,7 +77,7 @@
 					}
 				}
 
-				scope.$watchCollection(propertyName, function (newItems, oldItems) {
+				scope.$watchCollection(scope.carouselData, function (newItems, oldItems) {
 					if (scope.owlCarousel[id]) {
 						scope.owlCarousel[id].destroy();
 					}
@@ -98,9 +98,14 @@
 						var currentItem = parseInt(attributes.currentItem, 10);
 						scope.owlCarousel[id].jumpTo(currentItem);
 					}
+
+					scope.$watch('carouselData', function () {
+						if (scope.owlCarousel[id]) {
+							scope.owlCarousel[id].reinit();
+						}
+					}, true);
 				});
 			}
 		};
 	}
-
 })();
