@@ -5,7 +5,7 @@
 		"Andrew Fatuk <fatukk@gmail.com>"
 	],
 	"description": "Populate Owl Carousel v1 with data from an Angular controller",
-	"main": "src/angular-owl-carousel1.js",
+	"main": "src/angular-owl-carousel.js",
 	"keywords": [
 		"owl",
 		"carousel",
