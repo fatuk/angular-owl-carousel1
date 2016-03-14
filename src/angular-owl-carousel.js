@@ -101,7 +101,10 @@
 
 					scope.$watch('carouselData', function () {
 						if (scope.owlCarousel[id]) {
-							scope.owlCarousel[id].reinit();
+							// Wait for height calculated
+							setTimeout(function () {
+								scope.owlCarousel[id].reinit();
+							}, 1000);
 						}
 					}, true);
 				});
