@@ -77,6 +77,13 @@
 					}
 				}
 
+				function jumpToItem(owl, index) {
+					if (index) {
+						var _index = parseInt(index, 10);
+						owl.jumpTo(_index);
+					}
+				}
+
 				scope.$watchCollection(scope.carouselData, function (newItems, oldItems) {
 					if (scope.owlCarousel[id]) {
 						scope.owlCarousel[id].destroy();
@@ -93,17 +100,14 @@
 					$element.owlCarousel(options);
 					scope.owlCarousel[id] = $element.data('owlCarousel');
 
-					// Jump to a current item
-					if (attributes.currentItem) {
-						var currentItem = parseInt(attributes.currentItem, 10);
-						scope.owlCarousel[id].jumpTo(currentItem);
-					}
+					attributes.currentItem && jumpToItem(scope.owlCarousel[id], attributes.currentItem);
 
 					scope.$watch('carouselData', function () {
 						if (scope.owlCarousel[id]) {
 							// Wait for height calculated
 							setTimeout(function () {
 								scope.owlCarousel[id].reinit();
+								attributes.currentItem && jumpToItem(scope.owlCarousel[id], attributes.currentItem);
 							}, 1000);
 						}
 					}, true);
