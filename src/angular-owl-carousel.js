@@ -46,6 +46,9 @@
 			'touchDrag',
 			'addClassActive',
 			'transitionStyle',
+		];
+
+		var callbacks = [
 			// Callbacks
 			'beforeUpdate',
 			'afterUpdate',
@@ -70,10 +73,18 @@
 					$element = $(element);
 				scope.carouselData = attributes.owlCarousel;
 
+				//add attributes to options
 				for (var i = 0; i < owlOptions.length; i++) {
 					var opt = owlOptions[i];
 					if (attributes[opt] !== undefined) {
 						options[opt] = $parse(attributes[opt])();
+					}
+				}
+				//add callbacks to options
+				for(var j = 0; j < callbacks.length - 1; j++) {
+					var item = callbacks[j];
+					if (attributes[item] !== undefined) {
+						options[item] = scope[attributes[item]];
 					}
 				}
 
